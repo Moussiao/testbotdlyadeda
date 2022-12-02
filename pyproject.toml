@@ -1,0 +1,91 @@
+[tool.poetry]
+name = "rating-bot"
+version = "0.1.0"
+description = "Twitch bot"
+authors = ["Илья Нестеренко <ilya-nest@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+twitchio = "^2.10.0"
+python-dotenv = "^v1.0.1"
+loguru = "^0.7.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+black = "^24.4.2"
+ruff = "^0.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+extend-exclude = '''
+/(
+  venv
+  | .venv
+)
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+exclude = [
+    ".git",
+    ".ruff_cache",
+    ".venv",
+    "__pypackages__",
+    "venv",
+]
+
+[tool.ruff.lint]
+# https://beta.ruff.rs/docs/rules/
+select = ["ALL"]
+fixable = ["I"]
+ignore = [
+    "ANN401",  # dynamically typed expressions (typing.Any) are disallowed in `{}`
+    "ARG001",  # Unused function argument: `kwargs`
+    "ARG002",  # unused method argument: `{}`
+    "ARG004",  # Unused static method argument: `context`
+    "COM812",  # trailing comma missing
+    "D100",  # missing docstring in public module
+    "D101",  # missing docstring in public class
+    "D102",  # missing docstring in public method
+    "D103",  # missing docstring in public function
+    "D104",  # missing docstring in public package
+    "D105",  # missing docstring in magic method
+    "D106",  # missing docstring in public nested class
+    "D107",  # missing docstring in `__init__`
+    "D200",  # one-line docstring should fit on one line
+    "D202",  # no blank lines allowed after function docstring (found {})
+    "D203",  # 1 blank line required before class docstring
+    "D205",  # 1 blank line required between summary line and description
+    "D209",  # multi-line docstring closing quotes should be on a separate line
+    "D210",  # no whitespaces allowed surrounding docstring text
+    "D212",  # multi-line docstring summary should start at the first line
+    "D213",  # multi-line docstring summary should start at the second line
+    "D400",  # first line should end with a period
+    "D401",  # first line of docstring should be in imperative mood: "{}"
+    "D404",  # first word of the docstring should not be "This"
+    "D415",  # first line should end with a period, question mark, or exclamation point
+    "EM101",  # exception must not use a string literal, assign to variable first
+    "EM102",  # expection must not use an f-string literal, assign to variable first
+    "INP001",  # file `{}` is part of an implicit namespace package. Add an `__init__.py`
+    "RUF001",  # string contains ambiguous `{}` [...]
+    "RUF002",  # docstring contains ambiguous `{}` [...]
+    "RUF003",  # Comment contains ambiguous `{}` [...]
+    "RUF005",  # consider iterable unpacking instead of concatenation"
+    "RUF009",  # do not perform function call `{}` in dataclass defaults
+    "RUF012",  # mutable class attributes should be annotated with `typing.ClassVar`
+    "RUF015",  # prefer next({iterable}) over single element slice
+    "RUF100",  # unused `noqa` directive (unknown: `{}`)
+    "S101",  # use of `assert` detected
+    "TD002",  # Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...
+    "TD003",  # Missing issue link on the line following this TODO
+    "TD005",  # Missing issue description after `TODO`
+    "TRY003",  # avoid specifying long messages outside the exception class
+]
+
